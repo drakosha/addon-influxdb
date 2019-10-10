@@ -70,5 +70,5 @@ LABEL \
     org.label-schema.url="https://community.home-assistant.io/t/community-hass-io-add-on-influxdb/54491?u=frenck" \
     org.label-schema.usage="https://github.com/hassio-addons/addon-influxdb/tree/master/README.md" \
     org.label-schema.vcs-ref=${BUILD_REF} \
-    org.label-schema.vcs-url="https://github.com/hassio-addons/addon-influxdb" \
-    org.label-schema.vendor="Community Hass.io Add-ons"
+    org.label-schema.vcs-url="https://github.com/drakosha/addon-influxdb" \
+    org.label-schema.vendor="Drakosha Hass.io Add-ons"

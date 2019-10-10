@@ -2,7 +2,7 @@
 include: https://raw.githubusercontent.com/hassio-addons/organization/master/gitlabci/addon.yml
 
 variables:
-  ADDON_GITHUB_REPO: "hassio-addons/addon-influxdb"
+  ADDON_GITHUB_REPO: "drakosha/addon-influxdb"
   ADDON_SLUG: "influxdb"
   ADDON_TARGET: "influxdb"
 
