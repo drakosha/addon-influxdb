@@ -18,7 +18,7 @@ if bashio::config.false 'reporting'; then
     bashio::log.info "Reporting of usage stats to InfluxData is disabled."
 fi
 
-if bashio:config.true 'graphite'; then
+if bashio::config.true 'graphite'; then
     echo >> /etc/influxdb/influxdb.conf
     echo "[[graphite]]" >> /etc/influxdb/influxdb.conf
     echo "  enabled = true" >> /etc/influxdb/influxdb.conf
