@@ -27,7 +27,8 @@
   },
   "ports_description": {
     "80/tcp": "Web interface (Not required for Hass.io Ingress)",
-    "8086/tcp": "InfluxDB server"
+    "8086/tcp": "InfluxDB server",
+    "2003/tcp": "Graphite interface port"
   },
   "hassio_api": true,
   "auth_api": true,
@@ -47,6 +48,7 @@
     "ssl": "bool",
     "certfile": "str",
     "keyfile": "str",
+    "graphite": "bool?",
     "leave_front_door_open": "bool?"
   }
 }
