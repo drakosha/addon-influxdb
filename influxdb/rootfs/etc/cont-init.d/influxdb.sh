@@ -28,7 +28,7 @@ if bashio::config.true 'graphite'; then
     if bashio::config.has_value 'graphite_templates'; then
         echo "  templates = [" >> /etc/influxdb/influxdb.conf
         for template in $(bashio::config 'graphite_templates'); do
-            echo "    \"$(template)\"," >> /etc/influxdb/influxdb.conf
+            echo "    \"$template\"," >> /etc/influxdb/influxdb.conf
         done
         echo "  ]" >> /etc/influxdb/influxdb.conf
     fi
