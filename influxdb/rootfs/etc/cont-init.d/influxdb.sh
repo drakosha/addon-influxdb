@@ -26,10 +26,7 @@ if bashio::config.true 'graphite'; then
     echo "  protocol = \"tcp\"" >> /etc/influxdb/influxdb.conf
 
     if bashio::config.has_value 'graphite_templates'; then
-        echo "  templates = [" >> /etc/influxdb/influxdb.conf
-        for template in $(bashio::config 'graphite_templates'); do
-            echo "    \"$template\"," >> /etc/influxdb/influxdb.conf
-        done
-        echo "  ]" >> /etc/influxdb/influxdb.conf
+        echo -n"  templates = " >> /etc/influxdb/influxdb.conf
+        cat /data/options.json | jq '.graphite_templates' >> /etc/influxdb/influxdb.conf
     fi
 fi
