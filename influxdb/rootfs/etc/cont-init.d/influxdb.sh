@@ -22,4 +22,14 @@ if bashio:config.true 'graphite'; then
     echo >> /etc/influxdb/influxdb.conf
     echo "[[graphite]]" >> /etc/influxdb/influxdb.conf
     echo "  enabled = true" >> /etc/influxdb/influxdb.conf
+    echo "  bind-address = \":2003\"" >> /etc/influxdb/influxdb.conf
+    echo "  protocol = \"tcp\"" >> /etc/influxdb/influxdb.conf
+
+    if bashio::config.has_value 'graphite_templates'; then
+        echo "  templates = [" >> /etc/influxdb/influxdb.conf
+        for template in $(bashio::config 'graphite_templates'); do
+            echo "    \"$(template)\"," >> 
+        done
+        echo "  ]" >> /etc/influxdb/influxdb.conf
+    fi
 fi
