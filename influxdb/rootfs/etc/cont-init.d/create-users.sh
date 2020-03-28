@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Hass.io Add-ons: InfluxDB
+# Home Assistant Community Add-on: InfluxDB
 # Ensure a user for Chronograf & Kapacitor exists within InfluxDB
 # ==============================================================================
 declare secret
@@ -11,7 +11,7 @@ if bashio::fs.file_exists "/data/secret"; then
 fi
 
 # Generate secret based on the Hass.io token
-secret="${HASSIO_TOKEN:21:32}"
+secret="${SUPERVISOR_TOKEN:21:32}"
 
 exec 3< <(influxd)
 

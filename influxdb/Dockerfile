@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/ubuntu-base:4.0.0
+ARG BUILD_FROM=hassioaddons/ubuntu-base:5.0.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -11,25 +11,25 @@ ARG BUILD_ARCH=amd64
 RUN \
     apt-get update \
     && apt-get install -y --no-install-recommends \
-        libnginx-mod-http-lua=1.14.0-0ubuntu1.6 \
+        libnginx-mod-http-lua=1.14.0-0ubuntu1.7 \
         luarocks=2.4.2+dfsg-1 \
-        nginx=1.14.0-0ubuntu1.6 \
+        nginx=1.14.0-0ubuntu1.7 \
     \
-    && luarocks install lua-resty-http 0.13-0 \
+    && luarocks install lua-resty-http 0.15-0 \
     \
     && ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then ARCH="arm64"; fi \
     && if [ "${BUILD_ARCH}" = "armv7" ]; then ARCH="armhf"; fi \
     \
-    && INFLUXDB="1.7.8" \
+    && INFLUXDB="1.7.10" \
     && curl -J -L -o /tmp/influxdb.deb \
         "https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB}_${ARCH}.deb" \
     \
-    && CHRONOGRAF="1.7.14" \
+    && CHRONOGRAF="1.8.0" \
     && curl -J -L -o /tmp/chronograf.deb \
         "https://dl.influxdata.com/chronograf/releases/chronograf_${CHRONOGRAF}_${ARCH}.deb" \
     \
-    && KAPACITOR="1.5.3" \
+    && KAPACITOR="1.5.4-1" \
     && curl -J -L -o /tmp/kapacitor.deb \
         "https://dl.influxdata.com/kapacitor/releases/kapacitor_${KAPACITOR}_${ARCH}.deb" \
     \
@@ -67,7 +67,7 @@ LABEL \
     org.label-schema.build-date=${BUILD_DATE} \
     org.label-schema.name="InfluxDB" \
     org.label-schema.schema-version="1.0" \
-    org.label-schema.url="https://community.home-assistant.io/t/community-hass-io-add-on-influxdb/54491?u=frenck" \
+    org.label-schema.url="https://community.home-assistant.io/t/home-assistant-community-add-on-influxdb/54491?u=frenck" \
     org.label-schema.usage="https://github.com/hassio-addons/addon-influxdb/tree/master/README.md" \
     org.label-schema.vcs-ref=${BUILD_REF} \
     org.label-schema.vcs-url="https://github.com/drakosha/addon-influxdb" \

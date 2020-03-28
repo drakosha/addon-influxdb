@@ -1,4 +1,4 @@
-# Community Hass.io Add-ons: InfluxDB
+# Home Assistant Community Add-on: InfluxDB
 
 [![GitHub Release][releases-shield]][releases]
 ![Project Stage][project-stage-shield]
@@ -17,9 +17,9 @@
 [![Discord][discord-shield]][discord]
 [![Community Forum][forum-shield]][forum]
 
-[![Buy me a coffee][buymeacoffee-shield]][buymeacoffee]
+[![Sponsor Frenck via GitHub Sponsors][github-sponsors-shield]][github-sponsors]
 
-[![Support my work on Patreon][patreon-shield]][patreon]
+[![Support Frenck on Patreon][patreon-shield]][patreon]
 
 Scalable datastore for metrics, events, and real-time analytics.
 
@@ -27,7 +27,7 @@ Scalable datastore for metrics, events, and real-time analytics.
 
 InfluxDB is an open source time series database optimized for high-write-volume.
 It's useful for recording metrics, sensor data, events,
-and performing analytics. It exposes an HTTP API for client interaction and if
+and performing analytics. It exposes an HTTP API for client interaction and is
 often used in combination with Grafana to visualize the data.
 
 ![Chronograf in the Home Assistant Frontend](images/screenshot.png)
@@ -40,16 +40,12 @@ Data Explorer.
 ## Installation
 
 The installation of this add-on is pretty straightforward and not different in
-comparison to installing any other Hass.io add-on.
+comparison to installing any other Home Assistant add-on.
 
-1. [Add our Hass.io add-ons repository][repository] to your Hass.io instance.
-1. Install the "InfluxDB" add-on.
+1. Search for the "InfluxDB" add-on in the Supervisor add-on store and install it.
 1. Start the "InfluxDB" add-on.
 1. Check the logs of the "InfluxDB" to see if everything went well.
 1. Click the "OPEN WEB UI" button!
-
-**NOTE**: Do not add this repository to Hass.io, please use:
-`https://github.com/hassio-addons/repository`.
 
 ## Configuration
 
@@ -57,18 +53,19 @@ comparison to installing any other Hass.io add-on.
 
 Example add-on configuration:
 
-```json
-{
-    "log_level": "info",
-    "auth": true,
-    "reporting": true,
-    "ssl": true,
-    "certfile": "fullchain.pem",
-    "keyfile": "privkey.pem"
-}
+```yaml
+log_level: info
+auth: true
+reporting: true
+ssl: true
+certfile: fullchain.pem
+keyfile: privkey.pem
+envvars:
+  - name: INFLUXDB_HTTP_LOG_ENABLED
+    value: 'true'
 ```
 
-**Note**: _This is just an example, don't copy and past it! Create your own!_
+**Note**: _This is just an example, don't copy and paste it! Create your own!_
 
 ### Option: `log_level`
 
@@ -111,13 +108,34 @@ Set it `true` to enable it, `false` otherwise.
 
 The certificate file to use for SSL.
 
-**Note**: _The file MUST be stored in `/ssl/`, which is the default for Hass.io_
+**Note**: _The file MUST be stored in `/ssl/`, which is the default_
 
 ### Option: `keyfile`
 
 The private key file to use for SSL.
 
-**Note**: _The file MUST be stored in `/ssl/`, which is the default for Hass.io_
+**Note**: _The file MUST be stored in `/ssl/`, which is the default_
+
+### Option: `envvars`
+
+This allows the setting of Environment Variables to control InfluxDB
+configuration as documented at:
+
+ <https://docs.influxdata.com/influxdb/v1.7/administration/config/#configuration-settings>
+
+**Note**: _Changing these options can possibly cause issues with you instance.
+USE AT YOUR OWN RISK!_
+
+These are case sensitive.
+
+#### Sub-option: `name`
+
+The name of the environment variable to set which must start with `INFLUXDB_`
+
+#### Sub-option: `value`
+
+The value of the environment variable to set, set the Influx documentation for
+full details.
 
 ### Option: `leave_front_door_open`
 
@@ -190,7 +208,7 @@ Got questions?
 
 You have several options to get them answered:
 
-- The [Community Hass.io Add-ons Discord chat server][discord] for add-on
+- The [Home Assistant Community Add-ons Discord chat server][discord] for add-on
   support and feature requests.
 - The [Home Assistant Discord chat server][discord-ha] for general Home
   Assistant discussions and questions.
@@ -216,18 +234,18 @@ The original setup of this repository is by [Franck Nijhof][frenck].
 For a full list of all authors and contributors,
 check [the contributor's page][contributors].
 
-## We have got some Hass.io add-ons for you
+## We have got some Home Assistant add-ons for you
 
-Want some more functionality to your Hass.io Home Assistant instance?
+Want some more functionality to your Home Assistant instance?
 
-We have created multiple add-ons for Hass.io. For a full list, check out
+We have created multiple add-ons for Home Assistant. For a full list, check out
 our [GitHub Repository][repository].
 
 ## License
 
 MIT License
 
-Copyright (c) 2018-2019 Franck Nijhof
+Copyright (c) 2018-2020 Franck Nijhof
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -251,8 +269,6 @@ SOFTWARE.
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
 [armhf-shield]: https://img.shields.io/badge/armhf-no-red.svg
 [armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
-[buymeacoffee-shield]: https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg
-[buymeacoffee]: https://www.buymeacoffee.com/frenck
 [commits-shield]: https://img.shields.io/github/commit-activity/y/hassio-addons/addon-influxdb.svg
 [commits]: https://github.com/hassio-addons/addon-influxdb/commits/master
 [contributors]: https://github.com/hassio-addons/addon-influxdb/graphs/contributors
@@ -260,8 +276,10 @@ SOFTWARE.
 [discord-shield]: https://img.shields.io/discord/478094546522079232.svg
 [discord]: https://discord.me/hassioaddons
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg
-[forum]: https://community.home-assistant.io/t/community-hass-io-add-on-influxdb/54491?u=frenck
+[forum]: https://community.home-assistant.io/t/home-assistant-community-add-on-influxdb/54491?u=frenck
 [frenck]: https://github.com/frenck
+[github-sponsors-shield]: https://frenck.dev/wp-content/uploads/2019/12/github_sponsor.png
+[github-sponsors]: https://github.com/sponsors/frenck
 [gitlabci-shield]: https://gitlab.com/hassio-addons/addon-influxdb/badges/master/pipeline.svg
 [gitlabci]: https://gitlab.com/hassio-addons/addon-influxdb/pipelines
 [home-assistant]: https://home-assistant.io
@@ -269,9 +287,9 @@ SOFTWARE.
 [issue]: https://github.com/hassio-addons/addon-influxdb/issues
 [keepchangelog]: http://keepachangelog.com/en/1.0.0/
 [license-shield]: https://img.shields.io/github/license/hassio-addons/addon-influxdb.svg
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2019.svg
-[patreon-shield]: https://www.frenck.nl/images/patreon.png
-[patreon]: https://www.patreon.com/
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2020.svg
+[patreon-shield]: https://frenck.dev/wp-content/uploads/2019/12/patreon.png
+[patreon]: https://www.patreon.com/frenck
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-production%20ready-brightgreen.svg
 [reddit]: https://reddit.com/r/homeassistant
 [releases-shield]: https://img.shields.io/github/release/hassio-addons/addon-influxdb.svg
