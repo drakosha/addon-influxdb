@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/debian-base:3.2.0
+ARG BUILD_FROM=hassioaddons/debian-base:3.2.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -26,7 +26,7 @@ RUN \
     && curl -J -L -o /tmp/influxdb.deb \
         "https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB}_${ARCH}.deb" \
     \
-    && CHRONOGRAF="1.8.4" \
+    && CHRONOGRAF="1.8.5" \
     && curl -J -L -o /tmp/chronograf.deb \
         "https://dl.influxdata.com/chronograf/releases/chronograf_${CHRONOGRAF}_${ARCH}.deb" \
     \
